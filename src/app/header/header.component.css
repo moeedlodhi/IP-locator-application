@@ -1,0 +1,27 @@
+.headerbar{
+    width:100%;
+    height:30px;
+    background-color: #eee;
+}
+
+.headertag{
+ 
+    color: #747474;
+    height:100%;
+    font-family:Roboto,Helvetica Neue,HelveticaNeue,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+
+
+}
+.mainHeader{
+    align-items: center;
+  
+}
+
+.currentClicked{
+    box-shadow: inset 0 -2px #1c1c1c;
+    color: #1c1c1c;
+    font-weight: 700;
+
+}
+

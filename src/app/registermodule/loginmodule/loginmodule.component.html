@@ -1,0 +1,29 @@
+<div *ngIf="showLoader" class="spinner" style="margin-top:30%">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+</div>
+<div *ngIf="!showLoader" class="container">
+    <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+           <div class="row" style="display:flex;justify-content: space-between;">
+            <h1>Sign in</h1>
+            <p style="color:#4964e9">Are you an employer?</p> 
+           </div> 
+          
+          <label for="exampleInputusername1">username</label>
+          <input [ngClass]="{'submitted':validity===true}" id="input1" formControlName="username"
+           type="username"
+            class="form-control" id="exampleInputusername1" aria-describedby="usernameHelp" placeholder="Enter username">
+          <span style="color:red" *ngIf="!signinForm.get('username').valid && signinForm.get('username').touched" id="usernameHelp" class="help-block">Invalid username</span>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input [ngClass]="{'submitted':validity===true}" id="input2" formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    
+</div>
+

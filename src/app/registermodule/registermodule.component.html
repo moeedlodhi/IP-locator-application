@@ -1,0 +1,26 @@
+
+
+<div class="container">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+           <div class="row" style="display:flex;justify-content: space-between;">
+            <h1>Register</h1>
+            <p style="color:#4964e9">Are you an employer?</p> 
+           </div> 
+          
+          <label for="exampleInputEmail1">Email address</label>
+          <input [ngClass]="{'submitted':validity===true}" id="input1" formControlName="email"
+           type="email"
+            class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <span style="color:red" *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched" id="emailHelp" class="help-block">Invalid Email</span>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input [ngClass]="{'submitted':validity===true}" id="input2" formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <span>Already have an account? <a [routerLink]="['/login']" style="color:#4964e9">Sign in</a></span>
+    
+</div>
