@@ -1,22 +1,46 @@
 
-
+<div style="width:100%;display:flex;justify-content:center">
+<img src="/assets/dux_logo.png">
+</div>
 <div class="container">
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
            <div class="row" style="display:flex;justify-content: space-between;">
             <h1>Register</h1>
-            <p style="color:#4964e9">Are you an employer?</p> 
+        
            </div> 
           
-          <label for="exampleInputEmail1">Email address</label>
+          <label for="exampleInputEmail">Email address</label>
           <input [ngClass]="{'submitted':validity===true}" id="input1" formControlName="email"
            type="email"
-            class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter email">
           <span style="color:red" *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched" id="emailHelp" class="help-block">Invalid Email</span>
         </div>
+
         <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input [ngClass]="{'submitted':validity===true}" id="input2" formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <label for="exampleInputUsername">Username</label>
+          <input [ngClass]="{'submitted':validity===true}" id="input2" formControlName="username" type="text" class="form-control" id="exampleInputUsername1" placeholder="Username">
+          <span style="color:red" *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched" id="usernameHelp" class="help-block">Username must be 8 characters long</span>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword">Password</label>
+
+
+          <div [ngStyle]="{'border':(validity && !signupForm.get('password').valid) || (!signupForm.get('password').valid && signupForm.get('password').touched)?'1px solid red':'1px solid grey'}" class="row" style="border-radius:.25rem;display:flex">
+            <div class="col-md-11" style="padding-left:0px;padding-right:0px">
+              <input style="border:0px"  formControlName="password" type="password" class="form-control" id="exampleInputPassword" placeholder="Password">
+            </div>
+            <div class="col-md-1" style="padding-left:0px;padding-right:0px">
+              <img (click)="toggleEye()" *ngIf="!showEye" style="width:20px;margin-left: 25%;margin-top:20%;" src="https://www.kindpng.com/picc/m/340-3408991_password-eyes-eye-icon-for-password-png-transparent.png">
+              <img (click)="toggleEye()" *ngIf="showEye" style="width:20px;margin-left: 25%;margin-top:20%;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoRYczV4U1NX1kY5Uq7rO4-r30Zq1nE32VwFUn8KX2Uy5bbysuzS_fpLNZDDpuomIdWSE&usqp=CAU">
+            </div>
+           
+    
+          </div>
+
+
+          <span style="color:red" *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched" id="usernameHelp" class="help-block">Password must be 8 characters long with one digit atleast</span>
         </div>
         
         <button type="submit" class="btn btn-primary">Submit</button>

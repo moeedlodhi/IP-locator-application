@@ -5,6 +5,7 @@ import { catchError} from 'rxjs/operators';
 import { MatDialog,MatDialogConfig,MatDialogRef} from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ValidateUsername } from './loginmodule.validator';
 @Component({
   selector: 'app-loginmodule',
   templateUrl: './loginmodule.component.html',
@@ -21,7 +22,7 @@ export class LoginmoduleComponent implements OnInit {
   ngOnInit(): void {
     this.signinForm=new FormGroup({
       'username':new FormControl(null,[Validators.required]),
-      'password':new FormControl(null,Validators.required)
+      'password':new FormControl(null,[Validators.required])
     })
   }
   

@@ -1,3 +1,6 @@
+<div style="width:100%;display:flex;justify-content:center">
+  <img src="/assets/dux_logo.png">
+  </div>
 <div *ngIf="showLoader" class="spinner" style="margin-top:30%">
   <div class="bounce1"></div>
   <div class="bounce2"></div>
@@ -8,7 +11,7 @@
         <div class="form-group">
            <div class="row" style="display:flex;justify-content: space-between;">
             <h1>Sign in</h1>
-            <p style="color:#4964e9">Are you an employer?</p> 
+            <div style="display:flex"><p>Don't have an Account?</p><a style="color:#4964e9" [routerLink]="['/register']">Sign up</a></div>
            </div> 
           
           <label for="exampleInputusername1">username</label>
