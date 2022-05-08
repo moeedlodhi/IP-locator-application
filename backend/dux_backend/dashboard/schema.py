@@ -3,7 +3,7 @@ from graphene_django import DjangoObjectType
 from django.contrib.auth.models import User
 import graphql_jwt
 from graphql_jwt.decorators import login_required
-from .models import country,iplog
+from .models import iplog
 from graphene.types import generic
 import requests
 
@@ -15,12 +15,13 @@ class IPobjectType(DjangoObjectType):
 
 
 class DashboardQueries(graphene.ObjectType):
-    single_user = graphene.Field(IPobjectType)
+    ip_logs = graphene.List(IPobjectType)
 
     @login_required
-    def resolve_single_user(root,info):
-        single_user=info.content.User
-        return single_user
+    def resolve_ip_logs(root,info):
+        user=info.context.user
+        all_logs=iplog.objects.filter(user=user)
+        return all_logs
 
 
 
@@ -49,8 +50,14 @@ class IPlogged(graphene.Mutation):
                 "Region_code":r['region_code'],
                 "city":r['city']
                 }
-            country_object,created=country.objects.get_or_create(user=info.context.user,
-                                                                country=r['country_code'])
+            log_to_create=iplog.objects.create(user=info.context.user,
+                                               country=r['country'],
+                                               country_code=r['country_code'],
+                                               continent=r['continent'],
+                                               IP=r['ip'],
+                                               region=r['region'],
+                                               region_code=r['region_code'],
+                                               city=r['city'])
 
 
             array.append(object_to_create)
