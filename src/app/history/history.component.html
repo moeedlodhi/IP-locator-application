@@ -1,5 +1,13 @@
+<div *ngIf="showLoader" class="spinner" style="margin-top:30%;margin-left: 45%;">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+</div>
 
-<div style="" class="container">
+
+
+<app-header *ngIf="!showLoader"></app-header>
+<div *ngIf="!showLoader" style="margin-top: 5%;" class="container">
     <h1>History of Logs</h1>
     <table class="table" style="margin-top:5%">
         <thead>
@@ -13,15 +21,15 @@
             <th scope="col">city</th>
           </tr>
         </thead>
-        <tbody *ngFor="let instance of [1,2,3,4]">
+        <tbody *ngFor="let instance of information">
             <tr>
     
-                <td>{{instance.ip}}</td>
-                <td>{{instance.Continent}}</td>
-                <td>{{instance.Country}}</td>
-                <td>{{instance.Country_code}}</td>
-                <td>{{instance.Region}}</td>
-                <td>{{instance.Region_code}}</td>
+                <td>{{instance.IP}}</td>
+                <td>{{instance.continent}}</td>
+                <td>{{instance.country}}</td>
+                <td>{{instance.countryCode}}</td>
+                <td>{{instance.region}}</td>
+                <td>{{instance.regionCode}}</td>
                 <td>{{instance.city}}</td>
             </tr>
         

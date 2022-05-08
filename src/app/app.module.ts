@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './dashboard/header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -17,11 +17,11 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DashboardService } from './services/dashboard.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpinterceptopService } from './http.interceptor';
-import { HistoryComponent } from './history/history.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    HistoryComponent
+
     
   
 

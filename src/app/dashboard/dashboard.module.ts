@@ -5,15 +5,17 @@ import { DashboardComponent } from "./dashboard.component";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { MatListModule } from "@angular/material/list";
-import { HeaderComponent } from "../header/header.component";
 import {MatMenuModule} from '@angular/material/menu';
+import { HeaderComponent } from "./header/header.component";
+import { HistoryComponent } from "../history/history.component";
 
 
 @NgModule({
     declarations:[
         DashboardComponent,
         HeaderComponent,
-     
+        HistoryComponent
+   
      
     ],
     imports:[

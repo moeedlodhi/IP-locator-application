@@ -19,4 +19,20 @@ export class DashboardService{
         })
     }
 
+    IPlogHistory(){
+      return this.apollo.query({
+        query:gql`query{
+          ipLogs{
+            IP
+            city
+            region
+            regionCode
+            country
+            countryCode
+            continent
+          }
+        }`
+      })
+    }
+
 }  
