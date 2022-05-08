@@ -30,6 +30,7 @@ export class AuthServiceModule{
                 tokenAuth(username:$email,password:$password){
                     token
                     payload
+              
                   }
             }`,variables:{
                 email:email1,

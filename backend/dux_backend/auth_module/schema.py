@@ -3,7 +3,7 @@ from graphene_django import DjangoObjectType
 from django.contrib.auth.models import User
 import graphql_jwt
 from graphql_jwt.decorators import login_required
-
+from django.contrib.auth import authenticate, login
 
 class UserObjectType(DjangoObjectType):
     class Meta:
@@ -36,7 +36,26 @@ class RegisterUser(graphene.Mutation):
         except BaseException as e:
             raise Exception({'error':e})       
 
+class LoginUser(graphene.Mutation):
+    class Arguments():
+        username = graphene.String()
+        password = graphene.String()
+
+    ok=graphene.String()
+
+    def mutate(self,info,**kwargs):
+        try:
+            username = kwargs.get('username')
+            password = kwargs.get('password')
+            user = authenticate(username=username, password=password)
+            login(user)
+            return LoginUser(ok='True')
+        except BaseException as e:
+            raise Exception({'error':e})
+
+
 class AuthMutations(graphene.ObjectType):
     token_auth = graphql_jwt.ObtainJSONWebToken.Field()
     verify_token = graphql_jwt.Verify.Field()
     register_user=RegisterUser.Field()
+    login_user=LoginUser.Field()

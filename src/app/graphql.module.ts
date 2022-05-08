@@ -7,7 +7,7 @@ const uri = 'http://127.0.0.1:8000/graphql/'; // <-- add the URL of the GraphQL 
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   return {
     link: httpLink.create({uri}),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache()
   };
 }
 

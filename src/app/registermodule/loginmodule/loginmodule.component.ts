@@ -41,7 +41,6 @@ export class LoginmoduleComponent implements OnInit {
         localStorage.setItem('username',res.data.tokenAuth.payload.username)
         localStorage.setItem('Token',res.data.tokenAuth.token)
         this.router.navigateByUrl('/dashboard')
-        // this.router.navigateByUrl('/dashboard/jobsearch/jobs')
       },
       err=>{
         this.showLoader=false;

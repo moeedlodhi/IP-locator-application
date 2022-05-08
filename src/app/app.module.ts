@@ -14,10 +14,15 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthServiceModule } from './services/authmodule.service';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import { DashboardService } from './services/dashboard.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpinterceptopService } from './http.interceptor';
+import { HistoryComponent } from './history/history.component';
 @NgModule({
   declarations: [
     AppComponent,
+    HistoryComponent
+    
   
 
 
@@ -39,7 +44,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     HttpClientModule,
     MatDialogModule
   ],
-  providers: [AuthServiceModule],
+  providers: [AuthServiceModule,DashboardService, { provide: HTTP_INTERCEPTORS, useClass: HttpinterceptopService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

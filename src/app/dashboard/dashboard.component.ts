@@ -1,7 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthServiceModule } from '../services/authmodule.service';
+import { DashboardService } from '../services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,12 +12,14 @@ import { AuthServiceModule } from '../services/authmodule.service';
 })
 export class DashboardComponent implements OnInit {
   username:string
+  IPinformation:any=[]
   @ViewChild('IPaddress') IPaddress:ElementRef
  
 
   constructor(
     private router:Router,
-    private authservice:AuthServiceModule
+    private authservice:AuthServiceModule,
+    private dashboardservice:DashboardService
   ) {
     
   }
@@ -28,7 +32,22 @@ export class DashboardComponent implements OnInit {
 
   submitIP(){
 
-    alert(this.IPaddress.nativeElement.value)
+    this.dashboardservice.logIP(this.IPaddress.nativeElement.value).subscribe(
+      (res:any)=>{
+        this.IPinformation=res.data.logIp.information
+        if(this.IPinformation===null){
+          alert('No location found')
+        }
+        
+
+      },(err:HttpErrorResponse)=>{
+        if(err.message==='Signature has expired'){
+          alert('token expired')
+          this.router.navigateByUrl('/login')
+        }
+      }
+    )
+
     
   }
 
