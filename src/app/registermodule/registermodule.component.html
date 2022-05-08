@@ -3,6 +3,9 @@
 <img src="/assets/dux_logo.png">
 </div>
 <div class="container">
+  <div *ngIf="showAlert" class="alertdiv" >
+    <h4 style="color:#9e4051">Username already taken</h4>
+  </div>
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
            <div class="row" style="display:flex;justify-content: space-between;">
@@ -43,7 +46,7 @@
           <span style="color:red" *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched" id="usernameHelp" class="help-block">Password must be 8 characters long with one digit atleast</span>
         </div>
         
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button [disabled]="!signupForm.get('email').valid || !signupForm.get('username').valid || !signupForm.get('password').valid " type="submit" class="btn btn-primary">Submit</button>
       </form>
       <span>Already have an account? <a [routerLink]="['/login']" style="color:#4964e9">Sign in</a></span>
     

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthServiceModule } from '../services/authmodule.service';
 
@@ -8,14 +9,12 @@ import { AuthServiceModule } from '../services/authmodule.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  selectedTab:String;
-  hideBars:Boolean=true;
-  showSignInBar:Boolean;
-  username:any;
-  toggled:Boolean=false
+  username:string
+  @ViewChild('IPaddress') IPaddress:ElementRef
+ 
 
   constructor(
-    private route:Router,
+    private router:Router,
     private authservice:AuthServiceModule
   ) {
     
@@ -23,57 +22,24 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const token=localStorage.getItem('Token')
-    if(token){
-      
+    const username=localStorage.getItem('username')
+    this.username=username
+  }
 
-      this.authservice.verifyToken(token).subscribe(
-        res=>{
-            
-            
-            
-        },
-        err=>{
-            localStorage.removeItem('Token')
-            localStorage.removeItem('username')
-            this.showSignInBar=true
-            
-            
-        }
-    )
+  submitIP(){
 
-    }else{
-      localStorage.removeItem('Token')
-      localStorage.removeItem('username')
-           
-
-    }
-
-    if(localStorage.getItem('username')===null){
-      this.showSignInBar=true;
-    }else{
-      this.showSignInBar=false;
-      this.username=localStorage.getItem('username')
-    }
+    alert(this.IPaddress.nativeElement.value)
     
-    let doc=document.getElementById('jobsearchbutton')
-    doc.click()
+  }
 
-    
-
+  logout(){
+    localStorage.removeItem('Token')
+    localStorage.removeItem('username')
+    this.router.navigateByUrl('/login')
 
   }
  
-  changeMainColor(item){
-    this.selectedTab=item
-
-}
-toggleImage(){
-
-  this.toggled=!this.toggled
-  let doc =document.getElementById('mainarrow')
-  doc.classList.toggle('spinimage1')      
-
-}  
+  
+ 
 
 }

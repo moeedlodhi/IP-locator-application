@@ -9,6 +9,21 @@ export class AuthServiceModule{
 
     constructor(private apollo:Apollo){}
 
+
+    registerUser(email:any,username:any,password:any){
+        return this.apollo.mutate({
+            mutation:gql`mutation registerMutation($email:String!,$username:String!,$password:String!){
+                registerUser(email:$email,username:$username,password:$password){
+                    ok
+                  }
+            }`,variables:{
+                email:email,
+                username:username,
+                password:password
+            }
+        })
+    }
+
     loginUser(email1:any,password1:any){
         return this.apollo.mutate({
             mutation:gql`mutation loginMutation($email:String!,$password:String!){

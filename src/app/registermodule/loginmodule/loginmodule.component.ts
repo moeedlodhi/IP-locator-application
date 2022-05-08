@@ -16,6 +16,7 @@ export class LoginmoduleComponent implements OnInit {
   signinForm:FormGroup
   validity:Boolean
   showLoader:Boolean=false;
+  showAlert:Boolean=false;
 
   constructor(private authservice:AuthServiceModule,private dialog:MatDialog,private router:Router) { }
 
@@ -35,14 +36,16 @@ export class LoginmoduleComponent implements OnInit {
     this.showLoader=true
     this.authservice.loginUser(username,password).subscribe(
       (res:any)=>{
-        this.showLoader=false
+        
         console.log('res',res)
         localStorage.setItem('username',res.data.tokenAuth.payload.username)
         localStorage.setItem('Token',res.data.tokenAuth.token)
-        alert('login success')
+        this.router.navigateByUrl('/dashboard')
         // this.router.navigateByUrl('/dashboard/jobsearch/jobs')
       },
       err=>{
+        this.showLoader=false;
+        this.showAlert=true;
         console.log(err,'error here')
       }
     )

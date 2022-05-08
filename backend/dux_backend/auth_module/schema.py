@@ -26,12 +26,11 @@ class RegisterUser(graphene.Mutation):
         password = graphene.String()
 
     ok=graphene.String()
-    token=graphene.String()
 
     def mutate(self,info,**kwargs):
         try:
             user_to_create=User.objects.create(email=kwargs['email'], username=kwargs['username'])
-            user_to_create.set_password=kwargs['password']
+            user_to_create.set_password(kwargs['password'])
             user_to_create.save()
             return RegisterUser(ok='True')
         except BaseException as e:

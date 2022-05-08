@@ -11,22 +11,21 @@ import { AuthServiceModule } from './services/authmodule.service';
 export class AuthenticationGuard implements CanActivate{
     constructor(private authservice:AuthServiceModule,private router:Router){}
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):any{
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree{
      
         const token=localStorage.getItem('Token')
-        return this.authservice.verifyToken(token).subscribe(
-            res=>{
-                
-                return true
-                
-            },
-            err=>{
-                localStorage.removeItem('Token')
-                localStorage.removeItem('username')
-                return false
-                
+        return this.authservice.verifyToken(token).pipe(
+            map((res:any)=>{
+
+                return true            
             }
-        )
+    
+        ),catchError(() => {
+            localStorage.removeItem('Token')
+            localStorage.removeItem('username')
+            this.router.navigateByUrl('/login')
+            return of(false);
+        }))
         
 
     }

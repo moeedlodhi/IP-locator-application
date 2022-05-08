@@ -7,8 +7,8 @@ import { DashboardComponent } from "./dashboard.component";
 
 const routes:Routes=[
     
-    {path:'',pathMatch:'full',redirectTo:'/login'},
-    {path:'dashboard',component:DashboardComponent,children:[
+    {path:'',pathMatch:'full',redirectTo:'/dashboard'},
+    {path:'dashboard',canActivate:[AuthenticationGuard],component:DashboardComponent,children:[
 
     ]}]
 

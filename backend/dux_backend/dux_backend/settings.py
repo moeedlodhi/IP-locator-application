@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'graphene_django'
 ]
+LOCAL_APPS=[
+    'dashboard'
+]
+INSTALLED_APPS=INSTALLED_APPS+LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

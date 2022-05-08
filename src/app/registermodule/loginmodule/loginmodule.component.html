@@ -7,6 +7,9 @@
   <div class="bounce3"></div>
 </div>
 <div *ngIf="!showLoader" class="container">
+    <div *ngIf="showAlert" class="alertdiv" >
+      <h4 style="color:#9e4051">Invalid Username or Password</h4>
+    </div>
     <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
            <div class="row" style="display:flex;justify-content: space-between;">

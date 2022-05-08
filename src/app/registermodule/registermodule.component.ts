@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthServiceModule } from '../services/authmodule.service';
 import { ValidateUsername } from './loginmodule/loginmodule.validator';
 
 
@@ -14,8 +16,9 @@ export class RegistermoduleComponent implements OnInit {
   signupForm:FormGroup
   validity:Boolean
   showEye:Boolean=false;
+  showAlert:Boolean=false;
 
-  constructor() { }
+  constructor(private authservice:AuthServiceModule,private router:Router) { }
 
   ngOnInit(): void {
     this.signupForm=new FormGroup({
@@ -26,7 +29,28 @@ export class RegistermoduleComponent implements OnInit {
   }
   onSubmit(){
     console.log(this.signupForm)
+
+    const email=this.signupForm.get('email').value
+    const username=this.signupForm.get('username').value
+    const password=this.signupForm.get('password').value
+
+    this.authservice.registerUser(email,username,password).subscribe(
+      async res=>{
+        debugger
+        const loginUser:any= await this.authservice.loginUser(this.signupForm.get('username').value,this.signupForm.get('password').value).toPromise()
+        await localStorage.setItem('username',loginUser.data.tokenAuth.payload.username)
+        await localStorage.setItem('Token',loginUser.data.tokenAuth.token)
+        await this.router.navigateByUrl('/dashboard')
+        
+
+      },err=>{
+        this.showAlert=true;
+        console.log(err,'error')
+      }
+    )
+  
     this.validity=!this.validity;
+
   }
   toggleEye(){
     this.showEye=!this.showEye

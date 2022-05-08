@@ -1,86 +1,37 @@
-<mat-menu #menu="matMenu" xPosition="before">
-    <div style="width:200px">
-        <button mat-menu-item>Profile</button>
-    </div>
+<div class="container" style="width:100%;display:flex;justify-content: space-between;align-items:flex-end;">
     
-    <div style="width:200px">
-        <button mat-menu-item>Saved Searches</button>
+    <img src="/assets/dux_logo.png" style="width:80px">
+    <div style="display:flex">
+        <h4>Welcome {{username}} </h4>
+        <a class="logout" (click)="logout()">Logout</a>
     </div>
 
-    <div style="width:200px">
-        <button mat-menu-item>Saved Jobs</button>
-    </div>
 
-    <div style="width:200px">
-        <button mat-menu-item>Applied Jobs</button>
-    </div>
+</div>
 
-    <div style="width:200px">
-        <button mat-menu-item>Recommended Jobs</button>
-    </div>
-</mat-menu>
+<div class="container1">
+    <label for="IP">Enter your IP here</label>
+    <input #IPaddress style="border:1px solid grey" type="email" class="form-control"  placeholder="Enter IP">
+    <button (click)="submitIP()" class="btn btn-primary" style="margin-top:1%">Submit</button>
 
 
 
-
-<app-header></app-header>
-<div class="row" style="height:78px;width:100%">
-    <div class="col-md-6" >
-        <div class="container">
-            <!-- <img style="margin-left:18%;margin-top:2%" src="/assets/seekpic.png"> -->
-        </div>
-
-   
-
-    </div>
-    <div class="col-md-6 row" >
-        <div *ngIf="showSignInBar" class="row" style="margin-top:4%;margin-left:30%">
-            <a [routerLink]="['/login']" class="signIn">Sign in </a>
-            <p class="signIn" style="padding-left:5px;padding-right:5px">or </p>
-            <a [routerLink]="['/register']" class="signIn">Register</a>
-            <div style="width:34px;height:2px"></div>
-            <a class="signIn">Employer site</a>
-        </div>
-
-
-        <div *ngIf="!showSignInBar" class="row" style="margin-top:4%;margin-left:30%">
-            <p class="signIn" style="color:black;padding-left:5px;padding-right:5px">{{username}}</p>
-            <button class="menuButton" mat-button [matMenuTriggerFor]="menu">
-                <img id="mainarrow" (click)="toggleImage()" class="spinimage spinimage1" src="/assets/whitearrow.png" style="height:25px">
-            </button>
-            <div style="width:34px;height:2px"></div>
-            <a class="signIn">Employer site</a>
-        </div>
+    <table class="table" style="margin-top:5%">
+        <thead>
+          <tr>
+            <th scope="col">IP</th>
+            <th scope="col">Continent</th>
+            <th scope="col">Country</th>
+            <th scope="col">Country_code</th>
+            <th scope="col">Region</th>
+            <th scope="col">Region_code</th>
+            <th scope="col">city</th>
+          </tr>
+        </thead>
+        <tbody>
         
-   
-
-    </div>
-    
+        </tbody>
+      </table>
+  
 </div>
-<div class="row padding" style="width:100%;height:48px;background-color: #eee;">
 
-    <div class="col-md-1 padding" ></div>
-    <div class="container" style="width:100%;height:48px">
-
-        <div id="mainBar" class="col-md-10 row" >
-            <div id="jobsearchbutton"  [routerLink]="['/dashboard/jobsearch/jobs']" [ngClass]="{'selectedColor':selectedTab==='job'}" (click)="changeMainColor('job')" style="text-align:center;height:48px" class="col-md-3 padding">
-                <p class="tabBar">Job Search</p>
-            </div>
-            <div [routerLink]="['/dashboard/profile']" [ngClass]="{'selectedColor':selectedTab==='profile'}" (click)="changeMainColor('profile')" style="text-align:center;height:48px" class="col-md-3 padding">
-                <p class="tabBar">Profile</p>
-            </div>
-            <div  [routerLink]="['/dashboard/careeradvice']" [ngClass]="{'selectedColor':selectedTab==='career'}" (click)="changeMainColor('career')" style="text-align:center;height:48px" class="col-md-3 padding">
-                <p class="tabBar">Career Advice</p>  
-            </div>
-            <div  [ngClass]="{selectedColor:selectedTab==='company'}" (click)="changeMainColor('company')" style="text-align:center;height:48px" class="col-md-3 padding">
-                <p class="tabBar">Company Reviews</p>
-            </div>
-    
-        </div>
-
-    </div>
-    
-    <div class="col-md-1 padding" ></div>
-
-</div>
-<router-outlet></router-outlet>
