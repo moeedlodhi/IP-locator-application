@@ -6,6 +6,7 @@ from graphql_jwt.decorators import login_required
 from .models import iplog
 from graphene.types import generic
 import requests
+from django.db.models import Count
 
 
 class IPobjectType(DjangoObjectType):
@@ -16,12 +17,39 @@ class IPobjectType(DjangoObjectType):
 
 class DashboardQueries(graphene.ObjectType):
     ip_logs = graphene.List(IPobjectType)
+    most_searched_countries=graphene.List(generic.GenericScalar)
+    heat_map=graphene.List(generic.GenericScalar)
 
     @login_required
     def resolve_ip_logs(root,info):
         user=info.context.user
         all_logs=iplog.objects.filter(user=user)
         return all_logs
+
+    @login_required
+    def resolve_most_searched_countries (root,info):
+        user=info.context.user
+        result = (iplog.objects.filter(user=user)
+        .values('country')
+        .annotate(dcount=Count('country'))
+        .order_by('-dcount'))
+        
+        return result
+
+    @login_required
+    def resolve_heat_map(root,info):
+        user=info.context.user
+        most_search_country=(iplog.objects.filter(user=user)
+        .values('country')
+        .annotate(dcount=Count('country'))
+        .order_by('-dcount'))[0]['country']
+        
+        result = (iplog.objects.filter(user=user,country=most_search_country)
+        .values('region','IP')
+        .annotate(dcount=Count('IP'))
+        .order_by())
+        return result    
+
 
 
 

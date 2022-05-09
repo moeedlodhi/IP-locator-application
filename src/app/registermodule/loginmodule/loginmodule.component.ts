@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
 import { AuthServiceModule } from 'src/app/services/authmodule.service';
 import { catchError} from 'rxjs/operators';
-import { MatDialog,MatDialogConfig,MatDialogRef} from '@angular/material/dialog';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ValidateUsername } from './loginmodule.validator';
 @Component({
@@ -18,7 +16,7 @@ export class LoginmoduleComponent implements OnInit {
   showLoader:Boolean=false;
   showAlert:Boolean=false;
 
-  constructor(private authservice:AuthServiceModule,private dialog:MatDialog,private router:Router) { }
+  constructor(private authservice:AuthServiceModule,private router:Router) { }
 
   ngOnInit(): void {
     this.signinForm=new FormGroup({

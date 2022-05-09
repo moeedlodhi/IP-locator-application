@@ -64,11 +64,11 @@ a:hover {
 
   }
   .container1{
-    height: 420px;
+    height: 200px;
     width: 900px;
     left: 50%;
     top: 40%;
-    position: fixed;
+    position: relative;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }

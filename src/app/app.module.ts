@@ -13,7 +13,6 @@ import { RegisterModule } from './registermodule/registermodule.module';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthServiceModule } from './services/authmodule.service';
-import {MatDialogModule} from '@angular/material/dialog';
 import { DashboardService } from './services/dashboard.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpinterceptopService } from './http.interceptor';
@@ -42,7 +41,6 @@ import { HttpinterceptopService } from './http.interceptor';
     RegisterModule,
     GraphQLModule,
     HttpClientModule,
-    MatDialogModule
   ],
   providers: [AuthServiceModule,DashboardService, { provide: HTTP_INTERCEPTORS, useClass: HttpinterceptopService, multi: true }],
   bootstrap: [AppComponent]

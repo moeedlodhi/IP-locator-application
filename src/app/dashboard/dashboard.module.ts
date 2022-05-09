@@ -4,17 +4,17 @@ import { DashboardRoutingModule } from "./dashboard-routing.module";
 import { DashboardComponent } from "./dashboard.component";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
-import { MatListModule } from "@angular/material/list";
-import {MatMenuModule} from '@angular/material/menu';
 import { HeaderComponent } from "./header/header.component";
 import { HistoryComponent } from "../history/history.component";
-
+import { ChartsComponent } from './charts/charts.component';
+import { ChartsModule } from "ng2-charts";
 
 @NgModule({
     declarations:[
         DashboardComponent,
         HeaderComponent,
-        HistoryComponent
+        HistoryComponent,
+        ChartsComponent
    
      
     ],
@@ -23,8 +23,8 @@ import { HistoryComponent } from "../history/history.component";
         DashboardRoutingModule,
         FormsModule,
         BrowserModule,
-        MatMenuModule,
-        MatListModule
+        ChartsModule
+     
     ]
     ,exports:[
 

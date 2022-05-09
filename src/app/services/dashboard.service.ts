@@ -34,5 +34,12 @@ export class DashboardService{
         }`
       })
     }
+    mostsearchedcountries(){
+      return this.apollo.query({
+        query:gql`query{
+          mostSearchedCountries
+        }`
+      })
+    }
 
 }  

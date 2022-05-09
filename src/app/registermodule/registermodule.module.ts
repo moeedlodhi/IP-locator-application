@@ -6,7 +6,6 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { RegisterRoutingModule } from "./registermodule-routing.module";
 import { RegistermoduleComponent } from "./registermodule.component";
 import { LoginmoduleComponent } from "./loginmodule/loginmodule.component";
-import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -24,8 +23,7 @@ import {MatDialogModule} from '@angular/material/dialog';
         ReactiveFormsModule,
         BrowserModule,
         BrowserAnimationsModule,
-        RegisterRoutingModule,
-        MatDialogModule
+        RegisterRoutingModule
 
 
     ],
