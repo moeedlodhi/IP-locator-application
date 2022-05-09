@@ -7,7 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 While inside the root directory, run "npm install" to install all packages
 
 ## Installing Dependencies for Back-End
-
+While inside the backend directory,
 1. First create a virtual environment using "Python -m venv 'somename'"
 2. Activate the virtual enviroment
 3. run "pip install -r requirements.txt" to install all packages needed
