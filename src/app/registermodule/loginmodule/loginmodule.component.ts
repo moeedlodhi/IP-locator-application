@@ -26,7 +26,7 @@ export class LoginmoduleComponent implements OnInit {
   }
   
   onSubmit(){
-    console.log(this.signinForm)
+
     this.validity=!this.validity;
     const username=this.signinForm.get('username').value
     const password=this.signinForm.get('password').value
@@ -34,8 +34,7 @@ export class LoginmoduleComponent implements OnInit {
     this.showLoader=true
     this.authservice.loginUser(username,password).subscribe(
       (res:any)=>{
-        
-        console.log('res',res)
+
         localStorage.setItem('username',res.data.tokenAuth.payload.username)
         localStorage.setItem('Token',res.data.tokenAuth.token)
         this.router.navigateByUrl('/dashboard')
@@ -43,7 +42,7 @@ export class LoginmoduleComponent implements OnInit {
       err=>{
         this.showLoader=false;
         this.showAlert=true;
-        console.log(err,'error here')
+
       }
     )
     

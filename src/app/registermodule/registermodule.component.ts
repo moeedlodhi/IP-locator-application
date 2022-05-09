@@ -28,7 +28,6 @@ export class RegistermoduleComponent implements OnInit {
     })
   }
   onSubmit(){
-    console.log(this.signupForm)
 
     const email=this.signupForm.get('email').value
     const username=this.signupForm.get('username').value
@@ -45,7 +44,7 @@ export class RegistermoduleComponent implements OnInit {
 
       },err=>{
         this.showAlert=true;
-        console.log(err,'error')
+
       }
     )
   
