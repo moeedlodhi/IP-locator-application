@@ -9,10 +9,12 @@ While inside the main Angular App, run "npm install" to install all packages
 ## Installing Dependencies for Back-End
 
 1.First create a virtual environment using "Python -m venv 'somename'"
+
 2. Activate the virtual enviroment
-3. run "pip install -r requirements.txt" to install all packages needed
-4. run "python manage.py migrate" to run all migrations
-5. run "python manage.py runserver" to start the server
+
+4. run "pip install -r requirements.txt" to install all packages needed
+5. run "python manage.py migrate" to run all migrations
+6. run "python manage.py runserver" to start the server
 
 ## Development server
 
