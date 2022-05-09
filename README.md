@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Installing Dependencies for Front-End
 
-While inside the main Angular App, run "npm install" to install all packages
+While inside the root directory, run "npm install" to install all packages
 
 ## Installing Dependencies for Back-End
 
